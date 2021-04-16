@@ -26,3 +26,25 @@ s1 = Singleton()
 print('Object created', s1)
 
 
+class Singleton2:
+    """懒汉式实例化：确保在实际需要时才创建对象，是一种节约资源并仅在需要时才创建它们的方式。"""
+    __instance = None
+
+    def __init__(self):
+        if not Singleton2.__instance:
+            print("__init__ method called...")
+        else:
+            print('Instance already created:', self.getInstance())
+
+    @classmethod
+    def getInstance(cls):
+        if not cls.__instance:
+            cls.__instance = Singleton2()
+        return cls.__instance
+
+
+ss = Singleton2()
+print("Object created", Singleton2.getInstance())
+ss1 = Singleton2()
+ss2 = Singleton2()
+
